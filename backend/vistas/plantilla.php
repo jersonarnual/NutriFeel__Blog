@@ -4,9 +4,7 @@ $ruta = ControladorRuta::ctrRuta();
 $rutaBackend = ControladorRuta::ctrRutaBackend();
 
 if(isset($_SESSION["idBackend"])){
-
 	$admin = ControladorAdministradores::ctrMostrarAdministradores("id", $_SESSION["idBackend"]);
-
 }
 
 ?>

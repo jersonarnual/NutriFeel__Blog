@@ -56,14 +56,14 @@ INFO HABITACIÓN
 				<div class="pt-4 cabeceraHabitacion">
 
 					<a href="<?php echo $ruta;  ?>" class="float-left lead text-white pt-1 px-3">
-						<h5><i class="fas fa-chevron-left"></i> Regresar</h5>
+						<h5><i class="fas fa-chevron-left"></i> Regresarr</h5>
 					</a>
 
 					<h2 class="float-right text-white px-3 categoria text-uppercase"><?php echo $habitaciones[0]["tipo"]; ?></h2>
 
 					<div class="clearfix"></div>
-
-					<ul class="nav nav-justified mt-lg-4">	
+<!-- Jerson Moreno -->
+					<!-- <ul class="nav nav-justified mt-lg-4">	
 
 						<?php foreach ($habitaciones as $key => $value): ?>
 
@@ -79,7 +79,7 @@ INFO HABITACIÓN
 
 						
 	
-					</ul>
+					</ul> -->
 
 				</div>
 
@@ -133,16 +133,16 @@ INFO HABITACIÓN
 				</section>
 
 				<!-- VIDEO  -->
-
-				<section class="mb-3 my-lg-3 videoHabitaciones d-none">
+<!-- Jerson Moreno -->
+				<!-- <section class="mb-3 my-lg-3 videoHabitaciones d-none">
 					
 					<iframe width="100%" height="380" src="https://www.youtube.com/embed/<?php  echo $habitaciones[0]["video"]; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				
-				</section>
+				</section> -->
 
 				<!-- 360 GRADOS -->
 
-				<section class="mb-3 my-lg-3 360Habitaciones d-none">
+				<!-- <section class="mb-3 my-lg-3 360Habitaciones d-none">
 
 					<div id="myPano" class="pano" back="<?php  echo $servidor.$habitaciones[0]["recorrido_virtual"]; ?>">
 
@@ -153,7 +153,7 @@ INFO HABITACIÓN
 
 					</div>
 									
-				</section>
+				</section> -->
 
 				<!--=====================================
 				DESCRIPCIÓN HABITACIONES
@@ -161,8 +161,8 @@ INFO HABITACIÓN
 
 				<div class="descripcionHabitacion px-3">
 					
-					<h1 class="colorTitulos float-left"><?php echo $habitaciones[0]["estilo"]." ".$habitaciones[0]["tipo"] ?></h1>
-
+					<h1 class="colorTitulos float-left"><?php echo $habitaciones[0]["estilo"]." ".$habitaciones[0]["tipo"] ?> </h1>
+<!-- Jerson Moreno
 					<div class="float-right pt-2">
 						
 						<button type="button" class="btn btn-default" vista="fotos"><i class="fas fa-camera"></i> Fotos</button>
@@ -171,7 +171,7 @@ INFO HABITACIÓN
 			
 						<button type="button" class="btn btn-default" vista="360"><i class="fas fa-video"></i> 360°</button>
 							
-					</div>
+					</div> -->
 
 					<div class="clearfix mb-4"></div>	
 
@@ -180,13 +180,10 @@ INFO HABITACIÓN
 						<?php echo $habitaciones[0]["descripcion_h"]; ?>
 
 					</div>
-
+<!-- 
 					<form action="<?php echo $ruta; ?>reservas" method="post">
 
 						<input type="hidden" name="id-habitacion" value="<?php echo $habitaciones[0]["id_h"]; ?>">
-					
-						<!-- ESCENARIO 2 Y 3 DE RESERVAS -->
-						<!-- <input type="hidden" name="id-habitacion" value="<?php echo $nuevoArrayHab; ?>"> -->
 
 						<input type="hidden" name="ruta" value="<?php echo $habitaciones[0]["ruta"]; ?>">
 
@@ -227,7 +224,7 @@ INFO HABITACIÓN
 
 						</div>
 
-					</form>
+					</form> -->
 
 				</div>
 
@@ -239,9 +236,9 @@ INFO HABITACIÓN
 
 			<div class="col-12 col-lg-4 colDerHabitaciones">
 
-				<h2 class="colorTitulos text-uppercase"><?php echo $habitaciones[0]["tipo"]; ?> INCLUYE:</h2>
+				<!-- <h2 class="colorTitulos text-uppercase"><?php echo $habitaciones[0]["tipo"]; ?> INCLUYE:</h2> -->
 				
-				<ul>
+				<!-- <ul>
 
 				<?php
 
@@ -260,11 +257,11 @@ INFO HABITACIÓN
 					
 				<?php endforeach ?>
 
-				</ul>
+				</ul> -->
 
 				<!-- HABITACIONES -->
 
-				<div class="habitaciones" id="habitaciones">
+				<!-- <div class="habitaciones" id="habitaciones">
 
 					<div class="container">
 
@@ -311,7 +308,7 @@ INFO HABITACIÓN
 
 					</div>
 
-				</div>
+				</div> -->
 
 			</div>
 

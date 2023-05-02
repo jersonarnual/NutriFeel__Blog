@@ -1,50 +1,44 @@
-<?php
+<?php $categorias = ControladorCategorias::ctrMostrarCategorias();?>
+<div class="habitaciones container-fluid bg-light" id="habitaciones">
 
-$categorias = ControladorCategorias::ctrMostrarCategorias();
-
-?>
-
-
-<!--=====================================
+	<!--=====================================
 HABITACIONES
 ======================================-->
+	<section class="pt-120 pb-150 habitacion-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="blog-list-inner">
 
-<div class="habitaciones container-fluid bg-light" id="habitaciones">
-	
-	<div class="container">
-
-		<h1 class="pt-4 text-center">HABITACIONES</h1>
-
-		<div class="row p-4 text-center">
-
-			<?php foreach ($categorias as $key => $value): ?>
-				
-			<div class="col-12 col-lg-4 pb-3 px-0 px-lg-3">
-
-				<a href="<?php echo $ruta.$value["ruta"];  ?>">
-					
-					<figure class="text-center">
+						<?php foreach ($categorias as $key => $value) : ?>
+							<div class="single-blog-inner">
+								<div class="post-image">
+									<a href="<?php echo $ruta . $value["ruta"];  ?>">
+										<img src="<?php echo $servidor . $value["img"]; ?>" alt="notice"  width="100%">
+									</a>
+									<div class="post-date">
+										<p><span>4</span>Abril</p>
+									</div>
+								</div>
+								<div class="post-content">
+									<div class="post-details">
+										<div class="post-title">
+											<h3><a href="<?php echo $ruta . $value["ruta"];  ?>"><?php echo $value["tipo"]; ?></a></h3>
+										</div>
+										<p>El cerebro es uno de los órganos más importantes de nuestro cuerpo y mantenerlo sano y
+											joven es fundamental para tener una buena calidad de vida. La dieta es un factor clave
+											para lograrlo, ya que los nutrientes que consumimos tienen un impacto directo en la salud
+											cerebral. En este blog, te presentamos las mejores dietas para mantener tu cerebro joven.</p>
+										<a class='btn' href="<?php echo $ruta . $value["ruta"];  ?>">Leer Mas</a>
+									</div>
+								</div>
+							</div>
+						<?php endforeach ?>
 						
-						<img src="<?php echo $servidor.$value["img"]; ?>" class="img-fluid" width="100%">
-
-						<p class="small py-4 mb-0"><?php echo $value["descripcion"]; ?></p>
-
-						<h3 class="py-2 text-gray-dark mb-0">DESDE $<?php echo number_format($value["continental_baja"]); ?> COP</h3>
-
-						<h5 class="py-2 text-gray-dark border">Ver detalles <i class="fas fa-chevron-right ml-2"></i></h5>
-						
-						<h1 class="text-white p-3 mx-auto w-50 lead text-uppercase" style="background:<?php echo $value["color"]; ?>"><?php echo $value["tipo"]; ?></h1>
-
-					</figure>
-
-				</a>
-
+					</div>
+				</div>
 			</div>
-
-			<?php endforeach ?>
-
 		</div>
-
-	</div>
+	</section>
 
 </div>

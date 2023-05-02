@@ -56,7 +56,7 @@ INFO HABITACIÓN
 				<div class="pt-4 cabeceraHabitacion">
 
 					<a href="<?php echo $ruta;  ?>" class="float-left lead text-white pt-1 px-3">
-						<h5><i class="fas fa-chevron-left"></i> Regresarr</h5>
+						<h5><i class="fas fa-chevron-left"></i> Regresar</h5>
 					</a>
 
 					<h2 class="float-right text-white px-3 categoria text-uppercase"><?php echo $habitaciones[0]["tipo"]; ?></h2>

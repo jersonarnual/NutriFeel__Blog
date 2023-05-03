@@ -16,9 +16,9 @@ if(isset($_SESSION["idBackend"])){
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-	<title>Hotel Portobelo | Backend</title>
+	<title>Nutrifeel | Administrador </title>
 
-	<link rel="icon" href="vistas/img/plantilla/icono.jpg">
+	<link rel="icon" href="vistas/img/plantilla/logo.png">
 
 	<!--=====================================
 	VÍNCULOS CSS

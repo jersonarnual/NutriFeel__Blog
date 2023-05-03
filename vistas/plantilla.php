@@ -14,11 +14,11 @@ $servidor = ControladorRuta::ctrServidor();
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>	
 
-	<title>Hotel Portobelo</title>
+	<title>Nutrifeel</title>
 
 	<base href="vistas/">
 
-	<link rel="icon" href="img/icono.jpg">
+	<link rel="icon" href="img/logo.png">
 
 	<!--=====================================
 	VÍNCULOS CSS

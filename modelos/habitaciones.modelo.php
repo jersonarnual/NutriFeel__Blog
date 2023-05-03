@@ -44,6 +44,18 @@ Class ModeloHabitaciones{
 	
 	}
 
+		/*=============================================
+	Mostrar todas las habitaciones
+	=============================================*/
+
+	static public function mdlMostrarHabitacionestotal($tabla1, $tabla2){
+
+		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h");
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;
+	}
 
 
 }

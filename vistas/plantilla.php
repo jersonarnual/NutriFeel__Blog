@@ -154,45 +154,45 @@ if(isset($_GET["pagina"])){
 	VALIDAR CORREO
 	=============================================*/
 
-	$item = "email_encriptado";
-	$valor = $_GET["pagina"];
+	// $item = "email_encriptado";
+	// $valor = $_GET["pagina"];
 
-	$validarCorreo = ControladorUsuarios::ctrMostrarUsuario($item, $valor);
+	// $validarCorreo = ControladorUsuarios::ctrMostrarUsuario($item, $valor);
 
-	if($validarCorreo["email_encriptado"] == $_GET["pagina"]){
+	// if($validarCorreo["email_encriptado"] == $_GET["pagina"]){
 
-		$id = $validarCorreo["id_u"];
-		$item = "verificacion";
-		$valor = 1;
+	// 	$id = $validarCorreo["id_u"];
+	// 	$item = "verificacion";
+	// 	$valor = 1;
 
-		$verificarUsuario = ControladorUsuarios::ctrActualizarUsuario($id, $item, $valor);
+	// 	$verificarUsuario = ControladorUsuarios::ctrActualizarUsuario($id, $item, $valor);
 
-		if($verificarUsuario == "ok"){
+	// 	if($verificarUsuario == "ok"){
 
-			echo'<script>
+	// 		echo'<script>
 
-					swal({
-							type:"success",
-						  	title: "¡CORRECTO!",
-						  	text: "¡Su cuenta ha sido verificada, ya puede ingresar al sistema!",
-						  	showConfirmButton: true,
-							confirmButtonText: "Cerrar"
+	// 				swal({
+	// 						type:"success",
+	// 					  	title: "¡CORRECTO!",
+	// 					  	text: "¡Su cuenta ha sido verificada, ya puede ingresar al sistema!",
+	// 					  	showConfirmButton: true,
+	// 						confirmButtonText: "Cerrar"
 						  
-					}).then(function(result){
+	// 				}).then(function(result){
 
-							if(result.value){   
-							    history.back();
-							  } 
-					});
+	// 						if(result.value){   
+	// 						    history.back();
+	// 						  } 
+	// 				});
 
-				</script>';
+	// 			</script>';
 
-			return;
+	// 		return;
 
-		}
+	// 	}
 
 
-	}
+	// }
 
 	/*=============================================
 	LISTA BLANCA DE PÁGINAS INTERNAS

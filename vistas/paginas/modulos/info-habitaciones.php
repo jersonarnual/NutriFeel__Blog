@@ -2,7 +2,14 @@
 
 $valor = $_GET["pagina"];
 
-$habitaciones = ControladorHabitaciones::ctrMostrarHabitaciones($valor);
+
+if (isset($_GET['id'])) {
+	$id_articulo = $_GET['id'];
+}else{
+	$id_articulo=null;
+	
+}
+$habitaciones = ControladorHabitaciones::ctrMostrarHabitacionesInternas($id_articulo);
 
 if(count($habitaciones) == 0){
 
@@ -96,20 +103,13 @@ INFO HABITACIÓN
 			            <ul class="slide-area">
 
 			            <?php
-
 			            $galeria = json_decode($habitaciones[0]["galeria"], true);
-			           
 			            ?>
 
 			            <?php foreach ($galeria as $key => $value): ?>
-			            	
 		            	  	<li>	
-
 								<img src="<?php echo $servidor.$value; ?>" class="img-fluid">
-
 							</li>
-
-
 			            <?php endforeach ?>
 
 						</ul>

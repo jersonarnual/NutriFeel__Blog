@@ -24,6 +24,27 @@ Class ModeloHabitaciones{
 
 	}
 
+
+	/*=============================================
+	MOSTRAR CATEGORIAS-HABITACIONES INTERNA
+	=============================================*/
+
+	static public function mdlMostrarHabitacionesInternas($tabla1, $tabla2, $valor){
+
+		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h WHERE $tabla2.id_h = :ruta");
+
+		$stmt -> bindParam(":ruta", $valor, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 	/*=============================================
 	Mostrar Habitacion Singular
 	=============================================*/
@@ -50,7 +71,7 @@ Class ModeloHabitaciones{
 
 	static public function mdlMostrarHabitacionestotal($tabla1, $tabla2){
 
-		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h");
+		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h  ORDER BY $tabla2.Id_h DESC" );
 		$stmt -> execute();
 		return $stmt -> fetchAll();
 		$stmt -> close();

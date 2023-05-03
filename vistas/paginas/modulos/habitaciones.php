@@ -1,10 +1,5 @@
 <?php
-// $categorias = ControladorCategorias::ctrMostrarCategorias();
 $habitaciones = ControladorHabitaciones::ctrMostrarHabitacionesTotal();
-// echo('<pre>');
-// var_dump($habitaciones);
-// echo('</pre>');
-
 ?>
 <div class="habitaciones container-fluid bg-light" id="habitaciones">
 
@@ -17,11 +12,18 @@ HABITACIONES
 				<div class="col-lg-8">
 					<div class="blog-list-inner">
 
-						<?php foreach ($habitaciones as $key => $value) : ?>
+						<?php 
+						foreach ($habitaciones as $key => $value) : ?>
+
 							<div class="single-blog-inner">
 								<div class="post-image">
 									<a href="<?php echo $ruta . $value["ruta"];  ?>">
-										<img src="<?php echo $servidor . $value["img"]; ?>" alt="notice" width="100%">
+										<?php 
+										$array = explode(",", trim($value["galeria"], "[]"));
+										$img = trim(reset($array), "\"");
+										$img = str_replace("\\", "/", $img);
+										?>
+										<img src="<?php echo $ruta ."admin/". $img; ?>" alt="notice" width="100%">
 									</a>
 									<div class="post-date">
 										<p><span>4</span>Abril</p>
@@ -46,4 +48,3 @@ HABITACIONES
 	</section>
 
 </div>
-

@@ -3,32 +3,26 @@
 =============================================*/
 
 $(".360Antiguo").pano({
-  img: $(".360Antiguo").attr("back"),
+	img: $(".360Antiguo").attr("back")
 });
 
 /*=============================================
 Plugin ckEditor
 =============================================*/
 
-ClassicEditor.create(document.querySelector("#descripcionHabitacion"), {
-  toolbar: [
-    "heading",
-    "|",
-    "bold",
-    "italic",
-    "bulletedList",
-    "numberedList",
-    "|",
-    "undo",
-    "redo",
-  ],
+ClassicEditor.create(document.querySelector('#descripcionHabitacion'), {
+
+   toolbar: [ 'heading', '|', 'bold', 'italic', 'bulletedList', 'numberedList', '|', 'undo', 'redo']
+
+}).then(function (editor) {
+  
+    $(".ck-content").css({"height":"400px"})
+
+}).catch(function (error) {
+
+	// console.log("error", error);
+
 })
-  .then(function (editor) {
-    $(".ck-content").css({ height: "400px" });
-  })
-  .catch(function (error) {
-    // console.log("error", error);
-  });
 
 /*=============================================
 Tabla Habitaciones
@@ -38,7 +32,7 @@ Tabla Habitaciones
 
 //     "url":"ajax/tablaHabitaciones.ajax.php",
 //     success: function(respuesta){
-
+      
 //      console.log("respuesta", respuesta);
 
 //     }
@@ -46,36 +40,39 @@ Tabla Habitaciones
 // })
 
 $(".tablaHabitaciones").DataTable({
-  ajax: "ajax/tablaHabitaciones.ajax.php",
-  deferRender: true,
-  retrieve: true,
-  processing: true,
-  language: {
-    sProcessing: "Procesando...",
-    sLengthMenu: "Mostrar _MENU_ registros",
-    sZeroRecords: "No se encontraron resultados",
-    sEmptyTable: "Ningún dato disponible en esta tabla",
-    sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-    sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
-    sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
-    sInfoPostFix: "",
-    sSearch: "Buscar:",
-    sUrl: "",
-    sInfoThousands: ",",
-    sLoadingRecords: "Cargando...",
-    oPaginate: {
-      sFirst: "Primero",
-      sLast: "Último",
-      sNext: "Siguiente",
-      sPrevious: "Anterior",
+  "ajax":"ajax/tablaHabitaciones.ajax.php",
+  "deferRender": true,
+  "retrieve": true,
+  "processing": true,
+  "language": {
+
+     "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sInfoPostFix":    "",
+    "sSearch":         "Buscar:",
+    "sUrl":            "",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
     },
-    oAria: {
-      sSortAscending: ": Activar para ordenar la columna de manera ascendente",
-      sSortDescending:
-        ": Activar para ordenar la columna de manera descendente",
-    },
-  },
-});
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    }
+
+   }
+
+})
+
 
 /*=============================================
 ARRASTRAR VARIAS IMAGENES GALERÍA
@@ -83,81 +80,94 @@ ARRASTRAR VARIAS IMAGENES GALERÍA
 
 var archivosTemporales = [];
 
-$(".subirGaleria").on("dragenter", function (e) {
+$(".subirGaleria").on("dragenter", function(e){
+
+	e.preventDefault();
+  	e.stopPropagation();
+
+  	$(".subirGaleria").css({"background":"url(vistas/img/plantilla/pattern.jpg)"})
+
+})
+
+$(".subirGaleria").on("dragleave", function(e){
+
   e.preventDefault();
   e.stopPropagation();
 
-  $(".subirGaleria").css({
-    background: "url(vistas/img/plantilla/pattern.jpg)",
-  });
-});
+  $(".subirGaleria").css({"background":""})
 
-$(".subirGaleria").on("dragleave", function (e) {
+})
+
+$(".subirGaleria").on("dragover", function(e){
+
   e.preventDefault();
   e.stopPropagation();
 
-  $(".subirGaleria").css({ background: "" });
-});
+})
 
-$(".subirGaleria").on("dragover", function (e) {
-  e.preventDefault();
-  e.stopPropagation();
-});
+$("#galeria").change(function(){
 
-$("#galeria").change(function () {
-  var archivos = this.files;
+	var archivos = this.files;
 
-  multiplesArchivos(archivos);
-});
+	multiplesArchivos(archivos);
 
-$(".subirGaleria").on("drop", function (e) {
+})
+
+$(".subirGaleria").on("drop", function(e){
+
   e.preventDefault();
   e.stopPropagation();
 
-  $(".subirGaleria").css({ background: "" });
+  $(".subirGaleria").css({"background":""})
 
   var archivos = e.originalEvent.dataTransfer.files;
-
+  
   multiplesArchivos(archivos);
-});
 
-function multiplesArchivos(archivos) {
-  for (var i = 0; i < archivos.length; i++) {
-    var imagen = archivos[i];
+})
 
-    if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png") {
-      swal({
-        title: "Error al subir la imagen",
-        text: "¡La imagen debe estar en formato JPG o PNG!",
-        type: "error",
-        confirmButtonText: "¡Cerrar!",
-      });
+function multiplesArchivos(archivos){
 
-      return;
-    } else if (imagen["size"] > 2000000) {
-      swal({
-        title: "Error al subir la imagen",
-        text: "¡La imagen no debe pesar más de 2MB!",
-        type: "error",
-        confirmButtonText: "¡Cerrar!",
-      });
+	for(var i = 0; i < archivos.length; i++){
 
-      return;
-    } else {
-      var datosImagen = new FileReader();
-      datosImagen.readAsDataURL(imagen);
+		var imagen = archivos[i];
+		
+		if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
 
-      $(datosImagen).on("load", function (event) {
-        var rutaImagen = event.target.result;
+			swal({
+	          title: "Error al subir la imagen",
+	          text: "¡La imagen debe estar en formato JPG o PNG!",
+	          type: "error",
+	          confirmButtonText: "¡Cerrar!"
+	        });
 
-        $(".vistaGaleria").append(
-          `
+	        return;
+
+		}else if(imagen["size"] > 2000000){
+
+			swal({
+	          title: "Error al subir la imagen",
+	          text: "¡La imagen no debe pesar más de 2MB!",
+	          type: "error",
+	          confirmButtonText: "¡Cerrar!"
+	        });
+
+	        return;
+
+		}else{
+
+			var datosImagen = new FileReader;
+      		datosImagen.readAsDataURL(imagen);
+
+      		$(datosImagen).on("load", function(event){
+
+      			var rutaImagen = event.target.result;
+
+      			$(".vistaGaleria").append(`
 
 					<li class="col-12 col-md-6 col-lg-3 card px-3 rounded-0 shadow-none">
                       
-	                    <img class="card-img-top" src="` +
-            rutaImagen +
-            `">
+	                    <img class="card-img-top" src="`+rutaImagen+`">
 
 	                    <div class="card-img-overlay p-0 pr-3">
 	                      
@@ -171,99 +181,120 @@ function multiplesArchivos(archivos) {
 
 	                </li>
 
-      			`
-        );
+      			`)
 
-        if (archivosTemporales.length != 0) {
-          archivosTemporales = JSON.parse($(".inputNuevaGaleria").val());
-        }
 
-        archivosTemporales.push(rutaImagen);
+        		if(archivosTemporales.length != 0){
 
-        $(".inputNuevaGaleria").val(JSON.stringify(archivosTemporales));
-      });
-    }
-  }
+        			archivosTemporales = JSON.parse($(".inputNuevaGaleria").val());
+
+        		}
+
+        		archivosTemporales.push(rutaImagen);    
+
+        		$(".inputNuevaGaleria").val(JSON.stringify(archivosTemporales)) 		
+
+      		})
+
+		}	
+
+	}	
+
 }
 
 /*=============================================
 QUITAR IMAGEN DE LA GALERÍA
 =============================================*/
 
-$(document).on("click", ".quitarFotoNueva", function () {
-  var listaFotosNuevas = $(".quitarFotoNueva");
+$(document).on("click", ".quitarFotoNueva", function(){
 
-  var listaTemporales = JSON.parse($(".inputNuevaGaleria").val());
+	var listaFotosNuevas = $(".quitarFotoNueva"); 
+	
+	var listaTemporales = JSON.parse($(".inputNuevaGaleria").val());
 
-  for (var i = 0; i < listaFotosNuevas.length; i++) {
-    $(listaFotosNuevas[i]).attr("temporal", listaTemporales[i]);
+	for(var i = 0; i < listaFotosNuevas.length; i++){
 
-    var quitarImagen = $(this).attr("temporal");
+		$(listaFotosNuevas[i]).attr("temporal", listaTemporales[i]);
 
-    if (quitarImagen == listaTemporales[i]) {
-      listaTemporales.splice(i, 1);
+		var quitarImagen = $(this).attr("temporal");
 
-      $(".inputNuevaGaleria").val(JSON.stringify(listaTemporales));
+		if(quitarImagen == listaTemporales[i]){
 
-      $(this).parent().parent().remove();
-    }
-  }
-});
+			listaTemporales.splice(i, 1);
+
+			$(".inputNuevaGaleria").val(JSON.stringify(listaTemporales));
+
+			 $(this).parent().parent().remove();
+
+		}
+
+	}
+
+})
 
 /*=============================================
 AGREGAR VIDEO
 =============================================*/
 
-$(".agregarVideo").change(function () {
-  var codigoVideo = $(this).val();
+$(".agregarVideo").change(function(){
 
-  $(".vistaVideo").html(
-    `<iframe width="100%" height="320" src="https://www.youtube.com/embed/` +
-      codigoVideo +
-      `" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-  );
-});
+	var codigoVideo = $(this).val();
+
+	$(".vistaVideo").html(
+    
+    `<iframe width="100%" height="320" src="https://www.youtube.com/embed/`+codigoVideo+`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+
+  )
+
+
+})
 
 /*=============================================
 AGREGAR IMAGEN 360
 =============================================*/
 
-$("#imagen360").change(function () {
-  var imagen = this.files[0];
+$("#imagen360").change(function(){
 
-  /*=============================================
+	var imagen = this.files[0];
+
+	/*=============================================
 	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
 	=============================================*/
 
-  if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png") {
-    $("#imagen360").val("");
+	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
 
-    swal({
-      title: "Error al subir la imagen",
-      text: "¡La imagen debe estar en formato JPG o PNG!",
-      type: "error",
-      confirmButtonText: "¡Cerrar!",
-    });
-  } else if (imagen["size"] > 2000000) {
-    $("#imagen360").val("");
+		$("#imagen360").val("");
 
-    swal({
-      title: "Error al subir la imagen",
-      text: "¡La imagen no debe pesar más de 2MB!",
-      type: "error",
-      confirmButtonText: "¡Cerrar!",
-    });
-  } else {
-    var datosImagen = new FileReader();
-    datosImagen.readAsDataURL(imagen);
+		swal({
+			title: "Error al subir la imagen",
+			text: "¡La imagen debe estar en formato JPG o PNG!",
+			type: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
 
-    $(datosImagen).on("load", function (event) {
-      var rutaImagen = event.target.result;
+	}else if(imagen["size"] > 2000000){
 
-      $(".ver360").html(
-        `<div class="pano 360Nuevo" back="` +
-          rutaImagen +
-          `">
+		$("#imagen360").val("");
+
+		swal({
+			title: "Error al subir la imagen",
+			text: "¡La imagen no debe pesar más de 2MB!",
+			type: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+
+	}else{
+
+		var datosImagen = new FileReader;
+		datosImagen.readAsDataURL(imagen);
+
+		$(datosImagen).on("load", function(event){
+
+			var rutaImagen = event.target.result;
+
+			 $(".ver360").html(
+
+			 	`<div class="pano 360Nuevo" back="`+rutaImagen+`">
 
                     <div class="controls">
                       <a href="#" class="left">&laquo;</a>
@@ -271,171 +302,215 @@ $("#imagen360").change(function () {
                     </div>
 
                   </div>`
-      );
 
-      $(".360Nuevo").pano({
-        img: $(".360Nuevo").attr("back"),
-      });
-    });
-  }
-});
+			)
+
+			$(".360Nuevo").pano({
+		        img: $(".360Nuevo").attr("back")
+		    });
+
+		})
+
+	}
+
+})
 
 /*=============================================
 QUITAR IMAGEN VIEJA GALERÍA
 =============================================*/
 
-$(document).on("click", ".quitarFotoAntigua", function () {
-  var listaFotosAntiguas = $(".quitarFotoAntigua");
+$(document).on("click", ".quitarFotoAntigua", function(){
 
-  var listaTemporales = $(".inputAntiguaGaleria").val().split(",");
+	var listaFotosAntiguas = $(".quitarFotoAntigua"); 
 
-  for (var i = 0; i < listaFotosAntiguas.length; i++) {
-    quitarImagen = $(this).attr("temporal");
+	var listaTemporales = $(".inputAntiguaGaleria").val().split(",");
 
-    if (quitarImagen == listaTemporales[i]) {
-      listaTemporales.splice(i, 1);
+	for(var i = 0; i < listaFotosAntiguas.length; i++){
 
-      $(".inputAntiguaGaleria").val(listaTemporales.toString());
+		quitarImagen = $(this).attr("temporal");
 
-      $(this).parent().parent().remove();
-    }
-  }
-});
+		if(quitarImagen == listaTemporales[i]){
+
+			listaTemporales.splice(i, 1);
+
+			$(".inputAntiguaGaleria").val(listaTemporales.toString());
+
+			$(this).parent().parent().remove();
+
+		}
+
+	}
+})
 
 /*=============================================
 GUARDAR HABITACIÓN
 =============================================*/
 
-$(".guardarHabitacion").click(function () {
-	debugger;
-  var idHabitacion = $(".idHabitacion").val();
+$(".guardarHabitacion").click(function(){
 
-  var tipo = $(".seleccionarTipo").val().split(",")[1];
-  var tipo_h = $(".seleccionarTipo").val().split(",")[0];
+	var idHabitacion = $(".idHabitacion").val();
 
-  var estilo = $(".seleccionarEstilo").val();
+	var tipo = $(".seleccionarTipo").val().split(",")[1];
+	var tipo_h = $(".seleccionarTipo").val().split(",")[0];
 
-  var galeria = $(".inputNuevaGaleria").val();
-  var galeriaAntigua = $(".inputAntiguaGaleria").val();
+	var estilo = $(".seleccionarEstilo").val();
 
-  var video = $(".agregarVideo").val();
+	var galeria = $(".inputNuevaGaleria").val();
+	var galeriaAntigua = $(".inputAntiguaGaleria").val();
 
-  var recorrido_virtual = $(".360Nuevo").attr("back");
-  var antiguoRecorrido = $(".antiguoRecorrido").val();
+	var video = $(".agregarVideo").val();
 
-  var descripcion = $(".ck-content").html();
+	var recorrido_virtual = $(".360Nuevo").attr("back");
+	var antiguoRecorrido = $(".antiguoRecorrido").val();
 
-  if (tipo == "" || tipo_h == "") {
-    swal({
-      title: "Error al guardar",
-      text: "El campo 'Elija Categoría' no puede ir vacío",
-      type: "error",
-      confirmButtonText: "¡Cerrar!",
-    });
+	var descripcion = $(".ck-content").html();
 
-    return;
-  } else if (estilo == "") {
-    swal({
-      title: "Error al guardar",
-      text: "El campo 'Nombre habitación' no puede ir vacío",
-      type: "error",
-      confirmButtonText: "¡Cerrar!",
-    });
 
-    return;
-  } else if (video == "") {
-    swal({
-      title: "Error al guardar",
-      text: "El campo de 'Vídeo' no puede ir vacío",
-      type: "error",
-      confirmButtonText: "¡Cerrar!",
-    });
+	if(tipo == "" || tipo_h == ""){
 
-    return;
-  } else if (descripcion == "") {
-    swal({
-      title: "Error al guardar",
-      text: "El campo de 'Descripción' no puede ir vacío",
-      type: "error",
-      confirmButtonText: "¡Cerrar!",
-    });
+		swal({
+	        title: "Error al guardar",
+	        text: "El campo 'Elija Categoría' no puede ir vacío",
+	        type: "error",
+	        confirmButtonText: "¡Cerrar!"
+	      });
 
-    return;
-  } else {
-    var datos = new FormData();
-    datos.append("idHabitacion", idHabitacion);
-    datos.append("tipo_h", tipo_h);
-    datos.append("tipo", tipo);
-    datos.append("estilo", estilo);
-    datos.append("galeria", galeria);
-    datos.append("galeriaAntigua", galeriaAntigua);
-    datos.append("video", video);
-    datos.append("recorrido_virtual", recorrido_virtual);
-    datos.append("antiguoRecorrido", antiguoRecorrido);
-    datos.append("descripcion", descripcion);
+    	return;
 
-    // $.ajax({
-    //   url: "ajax/habitaciones.ajax.php",
-    //   method: "POST",
-    //   data: datos,
-    //   cache: false,
-    //   contentType: false,
-    //   processData: false,
-    //   success: function (respuesta) {
-    //     if (respuesta == "ok") {
-    //       swal({
-    //         type: "success",
-    //         title: "¡CORRECTO!",
-    //         text: "¡La habitación ha sido guardada exitosamente!",
-    //         showConfirmButton: true,
-    //         confirmButtonText: "Cerrar",
-    //       }).then(function (result) {
-    //         if (result.value) {
-    //           window.location = "habitaciones";
-    //         }
-    //       });
-    //     }
-    //   },
-	//   error: function(xhr, status, error) {
-	// 	swal({
-    //         type: "error",
-    //         title: "¡CORRECTO!",
-    //         text: "¡La habitación ha sido guardada exitosamente!",
-    //         showConfirmButton: true,
-    //         confirmButtonText: "Cerrar",
-    //       })
-	//   }
-    // });
+	}else if(estilo == ""){
 
-	fetch("ajax/habitaciones.ajax.php", {
-		method: 'POST', // or 'PUT'
-		body: datos, // data can be `string` or {object}!
-	  }).then(res => res.json())
-	  .catch(error => console.error('Error:', error))
-	  .then(response => {
-		if (response == "ok") {
-			swal({
-			  type: "success",
-			  title: "¡CORRECTO!",
-			  text: "¡La habitación ha sido guardada exitosamente!",
-			  showConfirmButton: true,
-			  confirmButtonText: "Cerrar",
-			}).then(function (result) {
-			  if (result.value) {
-				window.location = "habitaciones";
-			  }
-			});
-		  }
-	  });
+	    swal({
+	        title: "Error al guardar",
+	        text: "El campo 'Escribe el titulo del post' no puede ir vacío",
+	        type: "error",
+	        confirmButtonText: "¡Cerrar!"
+	      });
 
-  }
-});
+	    return;
+
+	// }else if(video == ""){
+
+	//     swal({
+	//         title: "Error al guardar",
+	//         text: "El campo de 'Vídeo' no puede ir vacío",
+	//         type: "error",
+	//         confirmButtonText: "¡Cerrar!"
+	//       });
+
+	//     return;
+
+	}else if(descripcion == ""){
+
+	    swal({
+	        title: "Error al guardar",
+	        text: "El campo de 'Descripción' no puede ir vacío",
+	        type: "error",
+	        confirmButtonText: "¡Cerrar!"
+	      });
+
+	    return;
+
+  	}else{
+
+    	var datos = new FormData();
+		// console.log("idHabitacion: ", idHabitacion);
+		datos.append("idHabitacion", idHabitacion);
+		
+		// console.log("tipo_h: ", tipo_h);
+		datos.append("tipo_h", tipo_h);
+		
+		// console.log("tipo: ", tipo);
+		datos.append("tipo", tipo);
+		
+		// console.log("estilo: ", estilo);
+		datos.append("estilo", estilo);
+		
+		// console.log("galeria: ", galeria);
+		datos.append("galeria", galeria);
+		
+		// console.log("galeriaAntigua: ", galeriaAntigua);
+		datos.append("galeriaAntigua", galeriaAntigua);
+		
+		// console.log("video: ", video);
+		datos.append("video", video);
+		
+		// console.log("recorrido_virtual: ", recorrido_virtual);
+		datos.append("recorrido_virtual", recorrido_virtual);
+		
+		// console.log("antiguoRecorrido: ", antiguoRecorrido);
+		datos.append("antiguoRecorrido", antiguoRecorrido);
+		
+		// console.log("descripcion: ", descripcion);
+		datos.append("descripcion", descripcion);
+		
+
+    	 $.ajax({
+
+		    url:"ajax/habitaciones.ajax.php",
+		    method: "POST",
+		    data: datos,
+		    cache: false,
+		    contentType: false,
+		    processData: false,
+		    xhr: function(){
+	        
+		    	var xhr = $.ajaxSettings.xhr();
+
+		    	xhr.onprogress = function(evt){ 
+
+		    		var porcentaje = Math.floor((evt.loaded/evt.total*100));
+
+		    		$(".preload").before(`
+
+		    			<div class="progress mt-3" style="height:2px">
+		    			<div class="progress-bar" style="width: `+porcentaje+`%;"></div>
+		    			</div>`
+		    			)
+
+		    	};
+
+		    	return xhr;
+		          
+		    },
+	      	success:function(respuesta){
+
+      			if(respuesta == "ok"){
+
+      				swal({
+		                type:"success",
+		                  title: "¡CORRECTO!",
+		                  text: "¡La publicación se ha creado correctamente!",
+		                  showConfirmButton: true,
+		                confirmButtonText: "Cerrar"
+		                
+		              }).then(function(result){
+
+		                  if(result.value){
+
+		                    window.location = "habitaciones";
+
+		                  }
+
+		              });
+
+      			}
+
+      		}
+
+      	})
+
+        
+    }
+
+
+})
 
 /*=============================================
 Eliminar Habitacion
 =============================================*/
 
-$(document).on("click", ".eliminarHabitacion", function () {
+$(document).on("click", ".eliminarHabitacion", function(){
+
   var idEliminar = $(this).attr("idEliminar");
 
   var galeriaHabitacion = $(this).attr("galeriaHabitacion");
@@ -443,44 +518,59 @@ $(document).on("click", ".eliminarHabitacion", function () {
   var recorridoHabitacion = $(this).attr("recorridoHabitacion");
 
   swal({
-    title: "¿Está seguro de eliminar esta Habitación?",
+    title: '¿Está seguro de eliminar esta Habitación?',
     text: "¡Si no lo está puede cancelar la acción!",
-    type: "warning",
+    type: 'warning',
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "Si, eliminar Habitación!",
-  }).then(function (result) {
-    if (result.value) {
-      var datos = new FormData();
-      datos.append("idEliminar", idEliminar);
-      datos.append("galeriaHabitacion", galeriaHabitacion);
-      datos.append("recorridoHabitacion", recorridoHabitacion);
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    cancelButtonText: 'Cancelar',
+    confirmButtonText: 'Si, eliminar Habitación!'
+  }).then(function(result){
 
-      $.ajax({
-        url: "ajax/habitaciones.ajax.php",
-        method: "POST",
-        data: datos,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (respuesta) {
-          if (respuesta == "ok") {
-            swal({
-              type: "success",
-              title: "¡CORRECTO!",
-              text: "La habitación ha sido borrada correctamente",
-              showConfirmButton: true,
-              confirmButtonText: "Cerrar",
-            }).then(function (result) {
-              if (result.value) {
-                window.location = "habitaciones";
-              }
-            });
+    if(result.value){
+
+        var datos = new FormData();
+        datos.append("idEliminar", idEliminar);
+        datos.append("galeriaHabitacion", galeriaHabitacion);
+        datos.append("recorridoHabitacion", recorridoHabitacion);
+
+        $.ajax({
+
+          url:"ajax/habitaciones.ajax.php",
+          method: "POST",
+          data: datos,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success:function(respuesta){
+
+             if(respuesta == "ok"){
+               swal({
+                  type: "success",
+                  title: "¡CORRECTO!",
+                  text: "La habitación ha sido borrada correctamente",
+                  showConfirmButton: true,
+                  confirmButtonText: "Cerrar"
+                 }).then(function(result){
+
+                    if(result.value){
+
+                      window.location = "habitaciones";
+
+                    }
+                })
+
+             }
+
           }
-        },
-      });
+
+        })
     }
-  });
-});
+  
+  })
+
+})
+
+
+

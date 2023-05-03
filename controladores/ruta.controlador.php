@@ -4,13 +4,14 @@ class ControladorRuta{
 
 	static public function ctrRuta(){
 
-		return "http://localhost:8080/blog/";
+		return "https://nutrifeel.com.co/";
 
 	}
 
-	static public function ctrServidor(){
+	static public function ctrRutaBackend(){
 
-		return "http://localhost:8080/blog/admin/";
+		return "https://nutrifeel.com.co/admin/";
+
 	}
 
 }

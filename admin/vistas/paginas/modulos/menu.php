@@ -5,7 +5,7 @@
   ======================================-->
   <a href="inicio" class="brand-link">
   
-    <img src="vistas/img/plantilla/logo.png" class="brand-image img-circle elevation-3">
+    <img src="vistas/img/plantilla/logo.png" class="brand-image-xl">
 
     <span class="brand-text font-weight-light">Nutrifeel</span>
 

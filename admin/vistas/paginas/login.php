@@ -2,14 +2,13 @@
 
   <div class="login-box">
 
-    <div class="login-logo">
 
-      <a href="<?php echo $ruta?>">Hotel Portobelo</a>
-    
-    </div>
     <!-- /.login-logo -->
 
     <div class="card">
+       <div class="login-logo">
+          <a href="<?php echo $ruta?>"><img src="vistas/img/plantilla/logo.png" class="brand-image-xxl img-circle "></a>
+        </div>
 
       <div class="card-body login-card-body">
 
@@ -19,7 +18,7 @@
 
           <div class="input-group mb-3">
 
-            <input type="text" class="form-control" placeholder="Usuario" name="ingresoUsuario">
+            <input type="text" class="form-control" placeholder="Nombre Usuario" name="ingresoUsuario">
 
             <div class="input-group-append">
 

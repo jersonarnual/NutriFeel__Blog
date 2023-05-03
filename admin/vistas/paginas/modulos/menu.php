@@ -5,9 +5,9 @@
   ======================================-->
   <a href="inicio" class="brand-link">
   
-    <img src="vistas/img/plantilla/icono.jpg" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <img src="vistas/img/plantilla/logo.png" class="brand-image img-circle elevation-3">
 
-    <span class="brand-text font-weight-light">Hotel Portobelo</span>
+    <span class="brand-text font-weight-light">Nutrifeel</span>
 
   </a>
 
@@ -29,7 +29,7 @@
             
             <i class="nav-icon fas fa-globe"></i>
             
-            <p>Ver sitio</p>
+            <p>Ir a Nutrifeel blog</p>
 
           </a>
 
@@ -75,14 +75,14 @@
           <a href="banner" class="nav-link">
             <i class="nav-icon far fa-images"></i>
             <p>
-              Banner
+              Portada
             </p>
           </a>
         </li>
 
         <!-- Botón página planes -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           
           <a href="planes" class="nav-link">
             
@@ -92,31 +92,34 @@
           
           </a>
 
-        </li>
+        </li> -->
 
         <!-- Botón página categorías -->
+        <?php if ($admin["perfil"] == "Administrador"): ?>
 
-        <li class="nav-item">
+          <li class="nav-item">
           
-          <a href="categorias" class="nav-link">
+            <a href="categorias" class="nav-link">
             
-            <i class="nav-icon fas fa-list-ul"></i>
+              <i class="nav-icon fas fa-list-ul"></i>
             
-            <p>Categorías</p>
+              <p>Categorías</p>
           
-          </a>
+            </a>
 
-        </li>
+          </li>
 
+        <?php endif ?>
+        
         <!-- Botón página habitaciones -->
 
         <li class="nav-item">
 
           <a href="habitaciones" class="nav-link">
 
-            <i class="nav-icon fas fa-bed"></i>
+            <i class="nav-icon fas fa-list-ul"></i>
             
-            <p>Habitaciones</p>
+            <p>Publicaciones</p>
 
           </a>
 
@@ -124,9 +127,8 @@
 
         <!-- Botón página reservas -->
 
-        <?php if ($admin["perfil"] == "Administrador"): ?>
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
 
           <a href="reservas" class="nav-link">
 
@@ -136,13 +138,12 @@
 
           </a>
 
-        </li>
+        </li> -->
 
-        <?php endif ?>
 
         <!-- Botón página testimonios -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
 
           <a href="testimonios" class="nav-link">
 
@@ -152,13 +153,13 @@
 
           </a>
 
-        </li>
+        </li> -->
 
         <!-- Botón página usuarios -->
 
         <?php if ($admin["perfil"] == "Administrador"): ?>         
 
-         <li class="nav-item">
+         <!-- <li class="nav-item">
           
           <a href="usuarios" class="nav-link">
             
@@ -168,13 +169,13 @@
 
           </a>
 
-        </li>
+        </li> -->
 
       <?php endif ?>
 
         <!-- Botón página recorrido -->
 
-         <li class="nav-item">
+         <!-- <li class="nav-item">
 
           <a href="recorrido" class="nav-link">
 
@@ -184,11 +185,11 @@
 
           </a>
 
-        </li>
+        </li> -->
 
         <!-- Botón página restaurante -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           
           <a href="restaurante" class="nav-link">
             
@@ -198,7 +199,7 @@
 
           </a>
 
-        </li>
+        </li> -->
 
       </ul>
 

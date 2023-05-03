@@ -8,7 +8,7 @@
 
         <div class="col-sm-6">
 
-          <h1>Habitaciones</h1>
+          <h1>Publicaciones</h1>
 
         </div>
 
@@ -17,7 +17,7 @@
           <ol class="breadcrumb float-sm-right">
 
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Habitaciones</li>
+            <li class="breadcrumb-item active">Publicaciones</li>
 
           </ol>
 
@@ -48,7 +48,7 @@
 
             <div class="card-header pl-2 pl-sm-3">
           
-              <a href="habitaciones" class="btn btn-primary btn-sm">Crear nueva habitación</a>
+              <a href="habitaciones" class="btn btn-primary btn-sm">Crear post</a>
 
               <div class="card-tools">
                 
@@ -71,7 +71,7 @@
 
                     <th style="width:10px">#</th> 
                     <th>Categoría</th>
-                    <th>Habitación</th>
+                    <th>Post</th>
                     <th style="width:10px">Acciones</th>          
 
                   </tr>   
@@ -131,7 +131,7 @@
 
             <div class="card-header">
 
-              <h5  class="card-title"><?php echo $habitacion["tipo"] ?> / <?php echo $habitacion["estilo"] ?></h5>
+
 
               <div class="preload"></div>
   
@@ -156,6 +156,9 @@
                         </button>';
 
                   }
+                  // else{
+                  //   $galeria =array();
+                  // }
 
                 ?>
               </div>
@@ -166,7 +169,7 @@
 
             <div class="card-body">
 
-              <input type="hidden" class="idHabitacion" value="<?php echo $habitacion["id_h"]?>">
+              <input type="hidden" class="idHabitacion" value="<?php echo isset($habitacion["id_h"]) ? $habitacion["id_h"] : '' ?>">
               
               <!-- Categoría y nombre de la habitación -->
 
@@ -210,7 +213,7 @@
 
                 <div class="form-inline">
                   
-                   <p class="mr-sm-2">Escribe el nombre de la habitación:</p>
+                   <p class="mr-sm-2">Escribe el titulo del post:</p>
 
                    <?php 
 
@@ -271,6 +274,8 @@
 
                       }
 
+                    }else {
+                      $galeria = array();
                     }
 
                    ?>
@@ -280,8 +285,8 @@
                 </div>
 
                 <input type="hidden" class="inputNuevaGaleria">
-
-                <input type="hidden" class="inputAntiguaGaleria" value="<?php echo implode(",", $galeria); ?>">
+                
+                <input type="hidden" class="inputAntiguaGaleria" value="<?php echo $galeria ? implode(",", $galeria) : ''; ?>">
 
                 <div class="card-footer">
                   
@@ -302,13 +307,13 @@
 
               <div class="row">
 
-                <div class="col-12 col-xl-6">
+                <div class="col-12 col-xl-12">
 
                   <div class="card rounded-lg card-secondary card-outline">
-                    
+
                     <div class="card-header pl-2 pl-sm-3">
                         
-                      <h5>Vídeo:</h5>
+                      <h5>Vídeo ¡opcional!</h5>
 
                     </div>
 
@@ -348,48 +353,6 @@
                   </div>
                   
                 </div>
-
-                <div class="col-12 col-xl-6">
-                  
-                  <div class="card rounded-lg card-secondary card-outline">
-                    
-                    <div class="card-header pl-2 pl-sm-3">
-
-                      <h5>Recorrido virtual:</h5>
-
-                    </div>
-
-                    <div class="card-body ver360">
-
-                     <?php if ($habitacion != null): ?>
-                      
-                      <div class="pano 360Antiguo" back="<?php echo $habitacion["recorrido_virtual"]; ?>">
-
-                        <div class="controls">
-                          <a href="#" class="left">&laquo;</a>
-                          <a href="#" class="right">&raquo;</a>
-                        </div>
-
-                      </div>
-
-                    <?php endif ?>
-
-                    </div>
-
-                    <div class="card-footer"> 
-
-                       <input type="hidden" class="antiguoRecorrido" value="<?php echo $habitacion["recorrido_virtual"]; ?>">
-
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imagen360">
-                        <label class="custom-file-label" for="imagen360">Agregar imagen 360°</label>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
                 
               </div>
 
@@ -399,7 +362,7 @@
 
                 <div class="card-header pl-2 pl-sm-3">
 
-                  <h5>Descripción:</h5>
+                  <h5>Noticia o artículo:</h5>
 
                 </div>
 

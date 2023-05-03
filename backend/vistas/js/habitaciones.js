@@ -381,23 +381,23 @@ $(".guardarHabitacion").click(function(){
 
 	    swal({
 	        title: "Error al guardar",
-	        text: "El campo 'Nombre habitación' no puede ir vacío",
+	        text: "El campo 'Escribe el titulo del post' no puede ir vacío",
 	        type: "error",
 	        confirmButtonText: "¡Cerrar!"
 	      });
 
 	    return;
 
-	}else if(video == ""){
+	// }else if(video == ""){
 
-	    swal({
-	        title: "Error al guardar",
-	        text: "El campo de 'Vídeo' no puede ir vacío",
-	        type: "error",
-	        confirmButtonText: "¡Cerrar!"
-	      });
+	//     swal({
+	//         title: "Error al guardar",
+	//         text: "El campo de 'Vídeo' no puede ir vacío",
+	//         type: "error",
+	//         confirmButtonText: "¡Cerrar!"
+	//       });
 
-	    return;
+	//     return;
 
 	}else if(descripcion == ""){
 
@@ -413,16 +413,36 @@ $(".guardarHabitacion").click(function(){
   	}else{
 
     	var datos = new FormData();
-    	datos.append("idHabitacion", idHabitacion);
-    	datos.append("tipo_h", tipo_h);
-    	datos.append("tipo", tipo);
-    	datos.append("estilo", estilo);
-    	datos.append("galeria", galeria);
-    	datos.append("galeriaAntigua", galeriaAntigua);
-    	datos.append("video", video);
-    	datos.append("recorrido_virtual", recorrido_virtual);
-    	datos.append("antiguoRecorrido", antiguoRecorrido);
-    	datos.append("descripcion", descripcion);
+		// console.log("idHabitacion: ", idHabitacion);
+		datos.append("idHabitacion", idHabitacion);
+		
+		// console.log("tipo_h: ", tipo_h);
+		datos.append("tipo_h", tipo_h);
+		
+		// console.log("tipo: ", tipo);
+		datos.append("tipo", tipo);
+		
+		// console.log("estilo: ", estilo);
+		datos.append("estilo", estilo);
+		
+		// console.log("galeria: ", galeria);
+		datos.append("galeria", galeria);
+		
+		// console.log("galeriaAntigua: ", galeriaAntigua);
+		datos.append("galeriaAntigua", galeriaAntigua);
+		
+		// console.log("video: ", video);
+		datos.append("video", video);
+		
+		// console.log("recorrido_virtual: ", recorrido_virtual);
+		datos.append("recorrido_virtual", recorrido_virtual);
+		
+		// console.log("antiguoRecorrido: ", antiguoRecorrido);
+		datos.append("antiguoRecorrido", antiguoRecorrido);
+		
+		// console.log("descripcion: ", descripcion);
+		datos.append("descripcion", descripcion);
+		
 
     	 $.ajax({
 
@@ -459,7 +479,7 @@ $(".guardarHabitacion").click(function(){
       				swal({
 		                type:"success",
 		                  title: "¡CORRECTO!",
-		                  text: "¡La habitación ha sido guardada exitosamente!",
+		                  text: "¡La publicación se ha creado correctamente!",
 		                  showConfirmButton: true,
 		                confirmButtonText: "Cerrar"
 		                

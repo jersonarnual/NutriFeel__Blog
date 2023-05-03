@@ -8,7 +8,7 @@
 
         <div class="col-sm-6">
 
-          <h1>Banner</h1>
+          <h1>Portada</h1>
 
         </div>
 
@@ -17,7 +17,7 @@
           <ol class="breadcrumb float-sm-right">
 
             <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
-            <li class="breadcrumb-item active">Banner</li>
+            <li class="breadcrumb-item active">Portada</li>
 
           </ol>
 
@@ -57,7 +57,7 @@
                   <tr>
 
                     <th style="width:10px">#</th> 
-                    <th>Banner</th>
+                    <th>Portada</th>
                     <th style="width:100px">Acciones</th>          
 
                   </tr>   

@@ -32,5 +32,15 @@ Class ControladorHabitaciones{
 
 	}
 
+    /*=============================================
+	Mostrar Habitaciónes totales
+	=============================================*/
+	
+	static public function ctrMostrarHabitacionesTotal(){
+		$tabla1 = "categorias";
+		$tabla2 = "habitaciones";
+		$respuesta = ModeloHabitaciones::mdlMostrarHabitacionestotal($tabla1,$tabla2);
+		return $respuesta;
+	}
 
 }

@@ -20,7 +20,7 @@ if (isset($_SESSION["validarSesion"])) {
 HEADER
 ======================================-->
 
-<header class="container-fluid p-0" style="background: black;">
+<header class="container-fluid p-0">
 
 	<div class="container p-0">
 
@@ -203,10 +203,10 @@ HEADER
 			<ul class="nav-icon-social">
 
 				<li>
-					<a href="#" target="_blank"><i class="fab fa-facebook-f lead text-white float-left mx-3"></i></a>
+					<a href="#" target="_blank"><i class="fab fa-facebook-f lead float-left mx-3"></i></a>
 				</li>
 				<li>
-					<a href="#" target="_blank"><i class="fab fa-instagram lead text-white float-left mx-3"></i></a>
+					<a href="#" target="_blank"><i class="fab fa-instagram lead float-left mx-3"></i></a>
 				</li>	
 			
 			</ul>	

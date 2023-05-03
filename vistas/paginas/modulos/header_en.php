@@ -66,7 +66,7 @@ HEADER
 
 							<select class="form-control form-control-lg selectTipoHabitacion" required>
 
-								<option value="">Tipo de habitación</option>
+								<option value="">Tipo de habitaciónn</option>
 
 								<?php foreach ($categorias as $key => $value): ?>
 
@@ -311,7 +311,7 @@ MENÚ MÓVIL
 		<div class="form-group my-4">
 			<select class="form-control form-control-lg selectTipoHabitacion" required>
 
-				<option value="">Tipo de habitación</option>
+				<option value="">Tipo de habitaciónn</option>
 
 				<?php foreach ($categorias as $key => $value): ?>
 

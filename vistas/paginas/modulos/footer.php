@@ -81,7 +81,7 @@ FOOTER
 
 		<div class="grid-item d-none d-lg-block pt-2">
 			
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat.</p>
+			<p>@copyright <a href="http://cubelabcolombia.com/" style="color: white;">cube-lab</a></p>
 
 		</div>
 

@@ -8,11 +8,22 @@ Class ControladorHabitaciones{
 	=============================================*/
 
 	static public function ctrMostrarHabitaciones($valor){
-
 		$tabla1 = "categorias";
 		$tabla2 = "habitaciones";
-
 		$respuesta = ModeloHabitaciones::mdlMostrarHabitaciones($tabla1, $tabla2, $valor);
+
+		return $respuesta;
+
+	}
+
+		/*=============================================
+	MOSTRAR CATEGORIAS-HABITACIONES INTERNA
+	=============================================*/
+
+	static public function ctrMostrarHabitacionesInternas($valor){
+		$tabla1 = "categorias";
+		$tabla2 = "habitaciones";
+		$respuesta = ModeloHabitaciones::mdlMostrarHabitacionesInternas($tabla1, $tabla2, $valor);
 
 		return $respuesta;
 

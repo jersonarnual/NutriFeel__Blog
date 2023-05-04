@@ -23,9 +23,7 @@ class ControladorHabitaciones{
 
 	static public function ctrNuevaHabitacion($datos){
 
-		if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ]+$/', $datos["estilo"]) && 
-		//    preg_match('/^[_\\a-zA-Z0-9]+$/', $datos["video"]) && 
-		   preg_match('/^[\/\=\\&\\$\\;\\_\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $datos["descripcion"])){
+		if( preg_match('/^[\/\=\\&\\$\\;\\_\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $datos["descripcion"])){
 
 		   	if($datos["galeria"] != ""){
 
@@ -85,56 +83,12 @@ class ControladorHabitaciones{
 				return;
 			}
 
-			// if($datos["recorrido_virtual"] != ""){
-				
-			// 	list($ancho, $alto) = getimagesize($datos["recorrido_virtual"]);
-
-			// 	$nuevoAncho = 4030;
-			// 	$nuevoAlto = 1144;
-
-			// 	$directorio = "../vistas/img/".$datos["tipo"];	
-
-			// 	$ruta360 = strtolower($directorio."/".$datos["estilo"]."-360.jpg");
-
-			// 	$origen = imagecreatefromjpeg($datos["recorrido_virtual"]);
-
-			// 	$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);	
-
-			// 	imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-			// 	imagejpeg($destino, $ruta360);	
-
-			// }else{
-
-			// 	echo'<script>
-
-			// 			swal({
-			// 					type:"error",
-			// 				  	title: "¡CORREGIR!",
-			// 				  	text: "¡El recorrido virtual no puede estar vacío",
-			// 				  	showConfirmButton: true,
-			// 					confirmButtonText: "Cerrar"
-							  
-			// 			}).then(function(result){
-
-			// 					if(result.value){   
-			// 					    history.back();
-			// 					  } 
-			// 			});
-
-			// 	</script>';
-
-			// 	return;
-			// }
-
-
 			$tabla = "habitaciones";
 
 			$datos = array("tipo_h" => $datos["tipo_h"],
 							"estilo" => $datos["estilo"],
 							"galeria" => json_encode($guardarRuta),
 							"video" => $datos["video"],
-							// "recorrido_virtual" => substr($ruta360,3),
 							"descripcion_h" => $datos["descripcion"]);
 
 			$respuesta = ModeloHabitaciones::mdlNuevaHabitacion($tabla, $datos);
@@ -176,7 +130,6 @@ class ControladorHabitaciones{
 	static public function ctrEditarHabitacion($datos){
 
 		if(preg_match('/^[\/\=\\&\\$\\;\\_\\-\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $datos["descripcion"])
-		//    &&  preg_match('/^[-\\_\\a-zA-Z0-9]+$/', $datos["video"])
 		   ){
 		   	
 			//Validamos que la galería no venga vacía
@@ -289,39 +242,6 @@ class ControladorHabitaciones{
 				}
 
 			}
-
-			//Cuando viene recorrido virtual nuevo
-
-	
-
-			// if($datos["recorrido_virtual"] != "undefined"){	
-
-			// 	unlink("../".$datos["antiguoRecorrido"]);
-				
-			// 	list($ancho, $alto) = getimagesize($datos["recorrido_virtual"]);
-
-			// 	$nuevoAncho = 4030;
-			// 	$nuevoAlto = 1144;
-
-			// 	$directorio = "../vistas/img/".$datos["tipo"];	
-
-			// 	$ruta360 = strtolower($directorio."/".$datos["estilo"]."-360.jpg");
-
-			// 	$origen = imagecreatefromjpeg($datos["recorrido_virtual"]);
-
-			// 	$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);	
-
-			// 	imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-			// 	imagejpeg($destino, $ruta360);
-
-			// 	$ruta360 = substr($ruta360,3);	
-
-			// }else{
-
-			// 	$ruta360 = $datos["antiguoRecorrido"];
-				
-			// }
 
 			$tabla = "habitaciones";
 

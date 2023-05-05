@@ -52,8 +52,6 @@
         </li>
 
         <!-- Botón página administradores -->
-
-       
           
           <li class="nav-item">
 
@@ -79,37 +77,6 @@
             </p>
           </a>
         </li>
-
-        <!-- Botón página planes -->
-
-        <!-- <li class="nav-item">
-          
-          <a href="planes" class="nav-link">
-            
-            <i class="nav-icon fas fa-shopping-bag"></i>
-            
-            <p>Planes</p>
-          
-          </a>
-
-        </li> -->
-
-        <!-- Botón página categorías -->
-        <?php if ($admin["perfil"] == "Administrador"): ?>
-
-          <li class="nav-item">
-          
-            <a href="categorias" class="nav-link">
-            
-              <i class="nav-icon fas fa-list-ul"></i>
-            
-              <p>Categorías</p>
-          
-            </a>
-
-          </li>
-
-        <?php endif ?>
         
         <!-- Botón página habitaciones -->
 
@@ -124,82 +91,6 @@
           </a>
 
         </li>
-
-        <!-- Botón página reservas -->
-
-
-        <!-- <li class="nav-item">
-
-          <a href="reservas" class="nav-link">
-
-            <i class="nav-icon far fa-calendar-alt"></i>
-
-            <p>Reservas</p>
-
-          </a>
-
-        </li> -->
-
-
-        <!-- Botón página testimonios -->
-
-        <!-- <li class="nav-item">
-
-          <a href="testimonios" class="nav-link">
-
-            <i class="nav-icon fas fa-user-check"></i>
-
-            <p>Testimonios</p>
-
-          </a>
-
-        </li> -->
-
-        <!-- Botón página usuarios -->
-
-        <?php if ($admin["perfil"] == "Administrador"): ?>         
-
-         <!-- <li class="nav-item">
-          
-          <a href="usuarios" class="nav-link">
-            
-            <i class="nav-icon fas fa-users"></i>
-            
-            <p> Usuarios</p>
-
-          </a>
-
-        </li> -->
-
-      <?php endif ?>
-
-        <!-- Botón página recorrido -->
-
-         <!-- <li class="nav-item">
-
-          <a href="recorrido" class="nav-link">
-
-            <i class="nav-icon fas fa-bus"></i>
-
-            <p>Recorrido</p>
-
-          </a>
-
-        </li> -->
-
-        <!-- Botón página restaurante -->
-
-        <!-- <li class="nav-item">
-          
-          <a href="restaurante" class="nav-link">
-            
-            <i class="nav-icon fas fa-utensils"></i>
-            
-            <p>Restaurante</p>
-
-          </a>
-
-        </li> -->
 
       </ul>
 

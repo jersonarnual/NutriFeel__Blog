@@ -83,7 +83,8 @@ $servidor = ControladorRuta::ctrServidor();
 	=============================================*/
 
 	if (isset($_GET["pagina"])) {
-		$rutasHabitaciones = ControladorHabitaciones::ctrMostrarHabitaciones();
+		$valor=null;
+		$rutasHabitaciones = ControladorHabitaciones::ctrMostrarHabitaciones($valor);
 		$validarRuta = "";
 		foreach ($rutasHabitaciones as $key => $value) {
 			if ($_GET["pagina"] == $value["id_h"]) {
@@ -96,15 +97,10 @@ $servidor = ControladorRuta::ctrServidor();
 		=============================================*/
 
 		if ($_GET["pagina"] == "info-habitaciones") {
-			include "paginas/" . $_GET["pagina"] . ".php";
+			include "paginas/modulos/" . $_GET["pagina"] . ".php";
 		} else if ($validarRuta != "") {
 			include "paginas/habitaciones.php";
-		} 
-		// else {
-		// 	echo '<script>
-		// window.location = "' . $ruta . '";
-		// </script>';
-		// }
+		}
 	} else {
 		include "paginas/inicio.php";
 	}

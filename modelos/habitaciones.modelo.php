@@ -8,15 +8,27 @@ Class ModeloHabitaciones{
 	Mostrar todas las habitaciones
 	=============================================*/
 
+	static public function mdlMostrarHabitaciones($tabla1, $valor){
 
-	static public function mdlMostrarHabitaciones($tabla1){
+		if($valor != null){
 
-
-		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.* FROM $tabla1  ORDER BY $tabla1.Id_h DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.* FROM $tabla1  WHERE $tabla1.id_h = :id_h");
 			
-		$stmt -> execute();
+			$stmt -> bindParam(":id_h", $valor, PDO::PARAM_STR);
 
-		return $stmt -> fetchAll();
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.* FROM $tabla1 ORDER BY $tabla1.id_h DESC");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
 
 		$stmt -> close();
 
@@ -28,34 +40,34 @@ Class ModeloHabitaciones{
 	Mostrar Habitacion Singular
 	=============================================*/
 
-	static public function mdlMostrarHabitacion($tabla, $valor){
+	// static public function mdlMostrarHabitacion($tabla, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_h = :id_h");
+	// 	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_h = :id_h");
 
-		$stmt -> bindParam(":id_h", $valor, PDO::PARAM_INT);
+	// 	$stmt -> bindParam(":id_h", $valor, PDO::PARAM_INT);
 
-		$stmt -> execute();
+	// 	$stmt -> execute();
 
-		return $stmt -> fetch();
+	// 	return $stmt -> fetch();
 
-		$stmt -> close();
+	// 	$stmt -> close();
 
-		$stmt = null;
+	// 	$stmt = null;
 	
-	}
+	// }
 
 	/*=============================================
 	Mostrar todas las habitaciones
 	=============================================*/
 
-	static public function mdlMostrarHabitacionestotal($tabla1, $tabla2){
+	// static public function mdlMostrarHabitacionestotal($tabla1, $tabla2){
 
-		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h  ORDER BY $tabla2.Id_h DESC" );
-		$stmt -> execute();
-		return $stmt -> fetchAll();
-		$stmt -> close();
-		$stmt = null;
-	}
+	// 	$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h  ORDER BY $tabla2.Id_h DESC" );
+	// 	$stmt -> execute();
+	// 	return $stmt -> fetchAll();
+	// 	$stmt -> close();
+	// 	$stmt = null;
+	// }
 
 
 }

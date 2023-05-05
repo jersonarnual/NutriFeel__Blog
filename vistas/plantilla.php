@@ -83,10 +83,10 @@ $servidor = ControladorRuta::ctrServidor();
 	=============================================*/
 
 	if (isset($_GET["pagina"])) {
-		$rutasCategorias = ControladorCategorias::ctrMostrarCategorias();
+		$rutasHabitaciones = ControladorHabitaciones::ctrMostrarHabitaciones();
 		$validarRuta = "";
-		foreach ($rutasCategorias as $key => $value) {
-			if ($_GET["pagina"] == $value["ruta"]) {
+		foreach ($rutasHabitaciones as $key => $value) {
+			if ($_GET["pagina"] == $value["id_h"]) {
 				$validarRuta = "habitaciones";
 			}
 		}
@@ -95,15 +95,16 @@ $servidor = ControladorRuta::ctrServidor();
 		LISTA BLANCA DE PÁGINAS INTERNAS
 		=============================================*/
 
-		if ($_GET["pagina"] == "reservas" || $_GET["pagina"] == "perfil" || $_GET["pagina"] == "salir") {
+		if ($_GET["pagina"] == "info-habitaciones") {
 			include "paginas/" . $_GET["pagina"] . ".php";
 		} else if ($validarRuta != "") {
 			include "paginas/habitaciones.php";
-		} else {
-			echo '<script>
-		window.location = "' . $ruta . '";
-		</script>';
-		}
+		} 
+		// else {
+		// 	echo '<script>
+		// window.location = "' . $ruta . '";
+		// </script>';
+		// }
 	} else {
 		include "paginas/inicio.php";
 	}

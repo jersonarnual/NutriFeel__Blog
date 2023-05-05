@@ -1,5 +1,5 @@
 <?php
-$habitaciones = ControladorHabitaciones::ctrMostrarHabitacionesTotal();
+$habitaciones = ControladorHabitaciones::ctrMostrarHabitaciones();
 ?>
 <div class="habitaciones container-fluid bg-light" id="habitaciones">
 
@@ -12,18 +12,17 @@ HABITACIONES
 				<div class="col-lg-8">
 					<div class="blog-list-inner">
 
-						<?php 
-						foreach ($habitaciones as $key => $value) : ?>
-
+						<?php
+						foreach ($habitaciones as $key => $value): ?>
 							<div class="single-blog-inner">
 								<div class="post-image">
-									<a href="<?php echo $ruta . $value["ruta"];  ?>">
-										<?php 
+									<a href="">
+									<?php
 										$array = explode(",", trim($value["galeria"], "[]"));
 										$img = trim(reset($array), "\"");
 										$img = str_replace("\\", "/", $img);
 										?>
-										<img src="<?php echo $ruta ."admin/". $img; ?>" alt="notice" width="100%">
+										<img src="<?php echo $ruta . "admin/" . $img; ?>" alt="notice" width="100%">
 									</a>
 									<div class="post-date">
 										<p><span>4</span>Abril</p>
@@ -32,19 +31,21 @@ HABITACIONES
 								<div class="post-content">
 									<div class="post-details">
 										<div class="post-title">
-											<h3><a href="<?php echo $ruta . $value["ruta"];  ?>"><?php echo $value["estilo"]; ?></a></h3>
+											<h3><a>
+													<?php echo $value["estilo"]; ?>
+												</a></h3>
 										</div>
-										<p><?php echo $value["descripcion_h"] = substr($value["descripcion_h"], 0, 400) . " ..."; ?></p>
-										<a class='btn' href="<?php echo $ruta . $value["ruta"];  ?>">Leer Mas</a>
+										<p>
+											<?php echo $value["descripcion_h"]; ?>
+										</p>
+										<a class='btn' href="./info-habitaciones">Leer Mas</a>
 									</div>
 								</div>
 							</div>
 						<?php endforeach ?>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
 </div>

@@ -5,36 +5,15 @@ require_once "conexion.php";
 Class ModeloHabitaciones{
 
 	/*=============================================
-	MOSTRAR CATEGORIAS-HABITACIONES CON INNER JOIN
+	Mostrar todas las habitaciones
 	=============================================*/
 
-	static public function mdlMostrarHabitaciones($tabla1, $tabla2, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h WHERE ruta = :ruta");
-
-		$stmt -> bindParam(":ruta", $valor, PDO::PARAM_STR);
-
-		$stmt -> execute();
-
-		return $stmt -> fetchAll();
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
+	static public function mdlMostrarHabitaciones($tabla1){
 
 
-	/*=============================================
-	MOSTRAR CATEGORIAS-HABITACIONES INTERNA
-	=============================================*/
-
-	static public function mdlMostrarHabitacionesInternas($tabla1, $tabla2, $valor){
-
-		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h WHERE $tabla2.id_h = :ruta");
-
-		$stmt -> bindParam(":ruta", $valor, PDO::PARAM_STR);
-
+		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.* FROM $tabla1  ORDER BY $tabla1.Id_h DESC");
+			
 		$stmt -> execute();
 
 		return $stmt -> fetchAll();
@@ -65,7 +44,7 @@ Class ModeloHabitaciones{
 	
 	}
 
-		/*=============================================
+	/*=============================================
 	Mostrar todas las habitaciones
 	=============================================*/
 

@@ -382,7 +382,7 @@ $(document).on("click", ".eliminarHabitacion", function(){
   var idEliminar = $(this).attr("idEliminar");
 
   var galeriaHabitacion = $(this).attr("galeriaHabitacion");
-	
+
   swal({
     title: '¿Está seguro de eliminar esta Habitación?',
     text: "¡Si no lo está puede cancelar la acción!",

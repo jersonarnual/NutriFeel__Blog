@@ -42,9 +42,19 @@ class ControladorHabitaciones{
 					Creamos el directorio donde vamos a guardar la imagen
 					=============================================*/
 
-					$directorio = "../vistas/img/noticias";	
+					// $directorio = "../vistas/img/noticias";	
+					$directorio = "../vistas/img/noticias";
+					$archivos = scandir($directorio);
+					$cantidad_imagenes = 0;
+					
+					foreach ($archivos as $archivo) {
+						$extension = pathinfo($archivo, PATHINFO_EXTENSION);
+						if (in_array($extension, array("jpg", "jpeg", "png", "gif"))) {
+							$cantidad_imagenes++;
+						}
+					}
 
-					array_push($ruta, strtolower($directorio."/".$datos["estilo"].($i+1).".jpg"));
+					array_push($ruta, strtolower($directorio."/".$cantidad_imagenes + 1 .($i+1).".jpg"));
 
 					$origen = imagecreatefromjpeg($galeria[$i]);
 
@@ -193,6 +203,7 @@ class ControladorHabitaciones{
 
 			   	$ruta = array();
 			   	$guardarRuta = array();
+				
 
 				$galeria = json_decode($datos["galeria"], true);
 				$galeriaAntigua = explode("," , $datos["galeriaAntigua"]);
@@ -210,9 +221,19 @@ class ControladorHabitaciones{
 					Creamos el directorio donde vamos a guardar la imagen
 					=============================================*/
 
-					$directorio = "../vistas/img/noticias/";	
+					// $directorio = "../vistas/img/noticias";	
+					$directorio = "../vistas/img/noticias";
+					$archivos = scandir($directorio);
+					$cantidad_imagenes = 0;
+					
+					foreach ($archivos as $archivo) {
+						$extension = pathinfo($archivo, PATHINFO_EXTENSION);
+						if (in_array($extension, array("jpg", "jpeg", "png", "gif"))) {
+							$cantidad_imagenes++;
+						}
+					}
 
-					array_push($ruta, strtolower($directorio."/".$datos["estilo"].$aleatorio.".jpg"));
+					array_push($ruta, strtolower($directorio."/".$cantidad_imagenes + 1 .$aleatorio.".jpg"));
 
 					$origen = imagecreatefromjpeg($galeria[$i]);
 
@@ -294,6 +315,10 @@ class ControladorHabitaciones{
 			unlink("../".$value);
 		
 		}
+
+		// Eliminamos imagen 360°
+
+		// unlink("../".$datos["recorridoHabitacion"]);	
 
 		$tabla = "habitaciones";
 

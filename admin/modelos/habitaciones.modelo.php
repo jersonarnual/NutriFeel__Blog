@@ -8,12 +8,12 @@ class ModeloHabitaciones{
 	MOSTRAR CATEGORIAS-HABITACIONES CON INNER JOIN
 	=============================================*/
 
-	static public function mdlMostrarHabitaciones($tabla1, $tabla2, $valor){
+	static public function mdlMostrarHabitaciones($tabla1, $valor){
 
 		if($valor != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h WHERE id_h = :id_h");
-
+			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.* FROM $tabla1  WHERE $tabla1.id_h = :id_h");
+			
 			$stmt -> bindParam(":id_h", $valor, PDO::PARAM_STR);
 
 			$stmt -> execute();
@@ -22,7 +22,7 @@ class ModeloHabitaciones{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.id = $tabla2.tipo_h ORDER BY $tabla2.id_h DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.* FROM $tabla1 ORDER BY $tabla1.id_h DESC");
 
 			$stmt -> execute();
 
@@ -42,13 +42,11 @@ class ModeloHabitaciones{
 
 	static public function mdlNuevaHabitacion($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(tipo_h, estilo, galeria, video, descripcion_h) VALUES (:tipo_h, :estilo, :galeria, :video, :descripcion_h)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(estilo, galeria, video, descripcion_h) VALUES (:estilo, :galeria, :video, :descripcion_h)");
 
-		$stmt->bindParam(":tipo_h", $datos["tipo_h"], PDO::PARAM_STR);
 		$stmt->bindParam(":estilo", $datos["estilo"], PDO::PARAM_STR);
 		$stmt->bindParam(":galeria", $datos["galeria"], PDO::PARAM_STR);
-		$stmt->bindParam(":video", $datos["video"], PDO::PARAM_STR);
-		
+		$stmt->bindParam(":video", $datos["video"], PDO::PARAM_STR);		
 		$stmt->bindParam(":descripcion_h", $datos["descripcion_h"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
@@ -73,14 +71,12 @@ class ModeloHabitaciones{
 
 	static public function mdlEditarHabitacion($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET tipo_h = :tipo_h, estilo = :estilo, galeria = :galeria, video = :video, descripcion_h = :descripcion_h WHERE id_h = :id_h");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estilo = :estilo, galeria = :galeria, video = :video, descripcion_h = :descripcion_h WHERE id_h = :id_h");
 
 		$stmt->bindParam(":id_h", $datos["id_h"], PDO::PARAM_STR);
-		$stmt->bindParam(":tipo_h", $datos["tipo_h"], PDO::PARAM_STR);
 		$stmt->bindParam(":estilo", $datos["estilo"], PDO::PARAM_STR);
 		$stmt->bindParam(":galeria", $datos["galeria"], PDO::PARAM_STR);
 		$stmt->bindParam(":video", $datos["video"], PDO::PARAM_STR);
-		// $stmt->bindParam(":recorrido_virtual", $datos["recorrido_virtual"], PDO::PARAM_STR);
 		$stmt->bindParam(":descripcion_h", $datos["descripcion_h"], PDO::PARAM_STR);
 
 		if($stmt->execute()){

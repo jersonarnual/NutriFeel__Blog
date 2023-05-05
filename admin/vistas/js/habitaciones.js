@@ -28,17 +28,6 @@ ClassicEditor.create(document.querySelector('#descripcionHabitacion'), {
 Tabla Habitaciones
 =============================================*/
 
-// $.ajax({
-
-//     "url":"ajax/tablaHabitaciones.ajax.php",
-//     success: function(respuesta){
-      
-//      console.log("respuesta", respuesta);
-
-//     }
-
-// })
-
 $(".tablaHabitaciones").DataTable({
   "ajax":"ajax/tablaHabitaciones.ajax.php",
   "deferRender": true,
@@ -143,11 +132,11 @@ function multiplesArchivos(archivos){
 
 	        return;
 
-		}else if(imagen["size"] > 2000000){
+		}else if(imagen["size"] > 8000000){
 
 			swal({
 	          title: "Error al subir la imagen",
-	          text: "¡La imagen no debe pesar más de 2MB!",
+	          text: "¡La imagen no debe pesar más de 8MB!",
 	          type: "error",
 	          confirmButtonText: "¡Cerrar!"
 	        });
@@ -250,72 +239,6 @@ $(".agregarVideo").change(function(){
 })
 
 /*=============================================
-AGREGAR IMAGEN 360
-=============================================*/
-
-$("#imagen360").change(function(){
-
-	var imagen = this.files[0];
-
-	/*=============================================
-	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
-	=============================================*/
-
-	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
-
-		$("#imagen360").val("");
-
-		swal({
-			title: "Error al subir la imagen",
-			text: "¡La imagen debe estar en formato JPG o PNG!",
-			type: "error",
-			confirmButtonText: "¡Cerrar!"
-		});
-
-	}else if(imagen["size"] > 2000000){
-
-		$("#imagen360").val("");
-
-		swal({
-			title: "Error al subir la imagen",
-			text: "¡La imagen no debe pesar más de 2MB!",
-			type: "error",
-			confirmButtonText: "¡Cerrar!"
-		});
-
-	}else{
-
-		var datosImagen = new FileReader;
-		datosImagen.readAsDataURL(imagen);
-
-		$(datosImagen).on("load", function(event){
-
-			var rutaImagen = event.target.result;
-
-			 $(".ver360").html(
-
-			 	`<div class="pano 360Nuevo" back="`+rutaImagen+`">
-
-                    <div class="controls">
-                      <a href="#" class="left">&laquo;</a>
-                      <a href="#" class="right">&raquo;</a>
-                    </div>
-
-                  </div>`
-
-			)
-
-			$(".360Nuevo").pano({
-		        img: $(".360Nuevo").attr("back")
-		    });
-
-		})
-
-	}
-
-})
-
-/*=============================================
 QUITAR IMAGEN VIEJA GALERÍA
 =============================================*/
 
@@ -349,35 +272,13 @@ GUARDAR HABITACIÓN
 $(".guardarHabitacion").click(function(){
 
 	var idHabitacion = $(".idHabitacion").val();
-
-	var tipo = $(".seleccionarTipo").val().split(",")[1];
-	var tipo_h = $(".seleccionarTipo").val().split(",")[0];
-
 	var estilo = $(".seleccionarEstilo").val();
-
 	var galeria = $(".inputNuevaGaleria").val();
 	var galeriaAntigua = $(".inputAntiguaGaleria").val();
-
 	var video = $(".agregarVideo").val();
-
-	var recorrido_virtual = $(".360Nuevo").attr("back");
-	var antiguoRecorrido = $(".antiguoRecorrido").val();
-
 	var descripcion = $(".ck-content").html();
 
-
-	if(tipo == "" || tipo_h == ""){
-
-		swal({
-	        title: "Error al guardar",
-	        text: "El campo 'Elija Categoría' no puede ir vacío",
-	        type: "error",
-	        confirmButtonText: "¡Cerrar!"
-	      });
-
-    	return;
-
-	}else if(estilo == ""){
+	if(estilo == ""){
 
 	    swal({
 	        title: "Error al guardar",
@@ -388,16 +289,6 @@ $(".guardarHabitacion").click(function(){
 
 	    return;
 
-	// }else if(video == ""){
-
-	//     swal({
-	//         title: "Error al guardar",
-	//         text: "El campo de 'Vídeo' no puede ir vacío",
-	//         type: "error",
-	//         confirmButtonText: "¡Cerrar!"
-	//       });
-
-	//     return;
 
 	}else if(descripcion == ""){
 
@@ -413,34 +304,11 @@ $(".guardarHabitacion").click(function(){
   	}else{
 
     	var datos = new FormData();
-		// console.log("idHabitacion: ", idHabitacion);
 		datos.append("idHabitacion", idHabitacion);
-		
-		// console.log("tipo_h: ", tipo_h);
-		datos.append("tipo_h", tipo_h);
-		
-		// console.log("tipo: ", tipo);
-		datos.append("tipo", tipo);
-		
-		// console.log("estilo: ", estilo);
 		datos.append("estilo", estilo);
-		
-		// console.log("galeria: ", galeria);
 		datos.append("galeria", galeria);
-		
-		// console.log("galeriaAntigua: ", galeriaAntigua);
 		datos.append("galeriaAntigua", galeriaAntigua);
-		
-		// console.log("video: ", video);
 		datos.append("video", video);
-		
-		// console.log("recorrido_virtual: ", recorrido_virtual);
-		datos.append("recorrido_virtual", recorrido_virtual);
-		
-		// console.log("antiguoRecorrido: ", antiguoRecorrido);
-		datos.append("antiguoRecorrido", antiguoRecorrido);
-		
-		// console.log("descripcion: ", descripcion);
 		datos.append("descripcion", descripcion);
 		
 
@@ -514,9 +382,7 @@ $(document).on("click", ".eliminarHabitacion", function(){
   var idEliminar = $(this).attr("idEliminar");
 
   var galeriaHabitacion = $(this).attr("galeriaHabitacion");
-
-  var recorridoHabitacion = $(this).attr("recorridoHabitacion");
-
+	
   swal({
     title: '¿Está seguro de eliminar esta Habitación?',
     text: "¡Si no lo está puede cancelar la acción!",
@@ -533,7 +399,6 @@ $(document).on("click", ".eliminarHabitacion", function(){
         var datos = new FormData();
         datos.append("idEliminar", idEliminar);
         datos.append("galeriaHabitacion", galeriaHabitacion);
-        datos.append("recorridoHabitacion", recorridoHabitacion);
 
         $.ajax({
 

@@ -152,14 +152,7 @@ if(isset($_SESSION["idBackend"])){
 			if($_GET["pagina"] == "inicio" ||
 			   $_GET["pagina"] == "administradores" ||
 			   $_GET["pagina"] == "banner" ||
-			   $_GET["pagina"] == "planes" ||
-			   $_GET["pagina"] == "categorias" ||
 			   $_GET["pagina"] == "habitaciones" ||
-			   $_GET["pagina"] == "reservas" ||
-			   $_GET["pagina"] == "testimonios" ||
-			   $_GET["pagina"] == "usuarios" ||
-			   $_GET["pagina"] == "recorrido" ||
-			   $_GET["pagina"] == "restaurante" ||
 			   $_GET["pagina"] == "salir"){
 
 				include "paginas/".$_GET["pagina"].".php";
@@ -187,14 +180,7 @@ if(isset($_SESSION["idBackend"])){
 
 	<script src="vistas/js/administradores.js"></script>
 	<script src="vistas/js/banner.js"></script>
-	<script src="vistas/js/planes.js"></script>
-	<script src="vistas/js/categorias.js"></script>
 	<script src="vistas/js/habitaciones.js"></script>
-	<script src="vistas/js/reservas.js"></script>
-	<script src="vistas/js/testimonios.js"></script>
-	<script src="vistas/js/usuarios.js"></script>
-	<script src="vistas/js/recorrido.js"></script>
-	<script src="vistas/js/restaurante.js"></script>
 	
 </body>
 

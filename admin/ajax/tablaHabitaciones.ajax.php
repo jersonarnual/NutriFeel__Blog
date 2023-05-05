@@ -39,7 +39,6 @@ class TablaHabitaciones{
 			$datosJson.= '[
 							
 						"'.($key+1).'",
-						"'.$value["tipo"].'",
 						"'.$value["estilo"].'",
 						"'.$acciones.'"
 						

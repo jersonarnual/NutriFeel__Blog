@@ -70,7 +70,6 @@
                   <tr>
 
                     <th style="width:10px">#</th> 
-                    <th>Categoría</th>
                     <th>Post</th>
                     <th style="width:10px">Acciones</th>          
 
@@ -79,19 +78,6 @@
                 </thead>
 
                 <tbody>
-                  
-                 <!--  <tr>
-                    
-                    <td>1</td>
-                    <td>Suite</td>
-                    <td>Oriental</td>
-                    <td>
-                      <button class="btn btn-secondary btn-sm">
-                        <i class="far fa-eye"></i>
-                      </button>
-                    </td> 
-
-                  </tr> -->
 
                 </tbody>
 
@@ -149,7 +135,7 @@
 
                     $galeria = json_decode($habitacion["galeria"], true);
 
-                    echo '<button type="button" class="btn btn-danger btn-sm eliminarHabitacion" idEliminar="'.$habitacion["id_h"].'" galeriaHabitacion="'.implode(",", $galeria).'" recorridoHabitacion="'.$habitacion["recorrido_virtual"].'">
+                    echo '<button type="button" class="btn btn-danger btn-sm eliminarHabitacion" idEliminar="'.$habitacion["id_h"].'" galeriaHabitacion="'.implode(",", $galeria).'" >
                   
                           <i class="fas fa-trash"></i> 
 
@@ -175,41 +161,7 @@
 
               <div class="d-flex flex-column flex-md-row justify-content-start mb-3">
                 
-                <div class="form-inline mx-3 px-3 border border-left-0 border-top-0 border-bottom-0">
-                  
-                  <p class="mr-sm-2">Elije la Categoría:</p>
 
-                   <?php 
-
-                    if($habitacion != null){
-
-                       echo '<select class="form-control seleccionarTipo" readonly>
-                        
-                        <option value="'.$habitacion["id"].','.$habitacion["tipo"].'">'.$habitacion["tipo"].'</option>
-
-                       </select>';
-
-                    }else{
-
-                       echo '<select class="form-control seleccionarTipo">
-
-                         <option value="">Seleccione</option>';
-
-                         $categorias = ControladorCategorias::ctrMostrarCategorias(null, null);
-
-                         foreach ($categorias as $key => $value) {
-                        
-                          echo '<option value="'.$value["id"].','.$value["tipo"].'">'.$value["tipo"].'</option>';
-                        
-                        }
-
-                       echo '</select>';    
-
-                    }
-
-                  ?>
-
-                </div>
 
                 <div class="form-inline">
                   
@@ -219,7 +171,7 @@
 
                     if($habitacion != null){
 
-                      echo '<input type="text" class="form-control seleccionarEstilo" value="'.$habitacion["estilo"].'" readonly>';
+                      echo '<input type="text" class="form-control seleccionarEstilo" value="'.$habitacion["estilo"].'">';
                     
                     }else{
 
@@ -408,7 +360,7 @@
 
                     $galeria = json_decode($habitacion["galeria"], true);
 
-                    echo '<button type="button" class="btn btn-danger btn-sm eliminarHabitacion" idEliminar="'.$habitacion["id_h"].'" galeriaHabitacion="'.implode(",", $galeria).'" recorridoHabitacion="'.$habitacion["recorrido_virtual"].'">
+                    echo '<button type="button" class="btn btn-danger btn-sm eliminarHabitacion" idEliminar="'.$habitacion["id_h"].'" galeriaHabitacion="'.implode(",", $galeria).'">
                   
                           <i class="fas fa-trash"></i> 
 

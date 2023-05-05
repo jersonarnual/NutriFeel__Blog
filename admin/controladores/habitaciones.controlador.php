@@ -8,10 +8,9 @@ class ControladorHabitaciones{
 
 	static public function ctrMostrarHabitaciones($valor){
 
-		$tabla1 = "categorias";
-		$tabla2 = "habitaciones";
+		$tabla1 = "habitaciones";
 
-		$respuesta = ModeloHabitaciones::mdlMostrarHabitaciones($tabla1, $tabla2, $valor);
+		$respuesta = ModeloHabitaciones::mdlMostrarHabitaciones($tabla1, $valor);
 
 		return $respuesta;
 
@@ -43,7 +42,7 @@ class ControladorHabitaciones{
 					Creamos el directorio donde vamos a guardar la imagen
 					=============================================*/
 
-					$directorio = "../vistas/img/".$datos["tipo"];	
+					$directorio = "../vistas/img/noticias";	
 
 					array_push($ruta, strtolower($directorio."/".$datos["estilo"].($i+1).".jpg"));
 
@@ -85,8 +84,7 @@ class ControladorHabitaciones{
 
 			$tabla = "habitaciones";
 
-			$datos = array("tipo_h" => $datos["tipo_h"],
-							"estilo" => $datos["estilo"],
+			$datos = array(	"estilo" => $datos["estilo"],
 							"galeria" => json_encode($guardarRuta),
 							"video" => $datos["video"],
 							"descripcion_h" => $datos["descripcion"]);
@@ -157,9 +155,7 @@ class ControladorHabitaciones{
 				return;
 			}
 
-			//Eliminar las fotos de la galería de la carpeta
-
-			$traerHabitacion = ModeloHabitaciones::mdlMostrarHabitaciones("categorias", "habitaciones", $datos["idHabitacion"]);
+			$traerHabitacion = ModeloHabitaciones::mdlMostrarHabitaciones("habitaciones", $datos["idHabitacion"]);
 
 			if($datos["galeriaAntigua"] != ""){	
 
@@ -214,7 +210,7 @@ class ControladorHabitaciones{
 					Creamos el directorio donde vamos a guardar la imagen
 					=============================================*/
 
-					$directorio = "../vistas/img/".$datos["tipo"];	
+					$directorio = "../vistas/img/noticias/";	
 
 					array_push($ruta, strtolower($directorio."/".$datos["estilo"].$aleatorio.".jpg"));
 
@@ -246,11 +242,9 @@ class ControladorHabitaciones{
 			$tabla = "habitaciones";
 
 			$datos = array("id_h" => $datos["idHabitacion"],
-						   "tipo_h" => $datos["tipo_h"],
 						   "estilo" => $datos["estilo"],
 						   "galeria" => json_encode($guardarRuta),
 						   "video" => $datos["video"],
-						//    "recorrido_virtual" => $ruta360,
 						   "descripcion_h" => $datos["descripcion"]);
 
 			$respuesta = ModeloHabitaciones::mdlEditarHabitacion($tabla, $datos);
@@ -300,10 +294,6 @@ class ControladorHabitaciones{
 			unlink("../".$value);
 		
 		}
-
-		// Eliminamos imagen 360°
-
-		unlink("../".$datos["recorridoHabitacion"]);	
 
 		$tabla = "habitaciones";
 

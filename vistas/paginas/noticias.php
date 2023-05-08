@@ -1,5 +1,4 @@
 <?php
 
-include "modulos/banner.php";
-
+include "modulos/banner-interior.php";
 include "modulos/noticias.php";

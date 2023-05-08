@@ -384,14 +384,14 @@ $(document).on("click", ".eliminarHabitacion", function(){
   var galeriaHabitacion = $(this).attr("galeriaHabitacion");
 
   swal({
-    title: '¿Está seguro de eliminar esta Habitación?',
+    title: '¿Está seguro de eliminar esta noticia?',
     text: "¡Si no lo está puede cancelar la acción!",
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     cancelButtonText: 'Cancelar',
-    confirmButtonText: 'Si, eliminar Habitación!'
+    confirmButtonText: 'Si, eliminar Noticia!'
   }).then(function(result){
 
     if(result.value){
@@ -414,7 +414,7 @@ $(document).on("click", ".eliminarHabitacion", function(){
                swal({
                   type: "success",
                   title: "¡CORRECTO!",
-                  text: "La habitación ha sido borrada correctamente",
+                  text: "La Noticia ha sido borrada correctamente",
                   showConfirmButton: true,
                   confirmButtonText: "Cerrar"
                  }).then(function(result){

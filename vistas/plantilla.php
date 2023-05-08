@@ -83,27 +83,19 @@ $servidor = ControladorRuta::ctrServidor();
 	=============================================*/
 
 	if (isset($_GET["pagina"])) {
-		$valor=null;
-		$rutasHabitaciones = ControladorHabitaciones::ctrMostrarHabitaciones($valor);
-		$validarRuta = "";
-		foreach ($rutasHabitaciones as $key => $value) {
-			if ($_GET["pagina"] == $value["id_h"]) {
-				$validarRuta = "habitaciones";
-			}
+
+		if ($_GET["pagina"] == "infnoticia") {
+			include "paginas/" . $_GET["pagina"] . ".php";
+		} else{
+			include "paginas/inicio.php";
 		}
 
-		/*=============================================
-		LISTA BLANCA DE PÁGINAS INTERNAS
-		=============================================*/
-
-		if ($_GET["pagina"] == "info-habitaciones") {
-			include "paginas/modulos/" . $_GET["pagina"] . ".php";
-		} else if ($validarRuta != "") {
-			include "paginas/habitaciones.php";
-		}
-	} else {
+	} else { 
 		include "paginas/inicio.php";
 	}
+
+
+
 
 	/*=============================================
 		PÁGINAS

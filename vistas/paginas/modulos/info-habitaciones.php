@@ -1,26 +1,6 @@
 <?php
-
-$valor = $_GET["pagina"];
-
-// $habitaciones = ControladorHabitaciones::ctrMostrarHabitaciones($valor);
-
-// if (count($habitaciones) == 0) {
-// 	echo '<script>
-// 	window.location = "' . $ruta . '";
-// 	</script>';
-// 	return;
-// }
-// echo '<pre class="bg-white">'; print_r($habitaciones); echo '</pre>';
-
-/*=============================================
-ESCENARIO 2 Y 3 DE RESERVAS
-=============================================*/
-// $arrayHabitaciones = array();
-// foreach ($habitaciones as $key => $value) {
-// 	array_push($arrayHabitaciones, $value["id_h"]);
-// }
-// $nuevoArrayHab = implode(",", $arrayHabitaciones);
-
+$valor = $_GET['id'];
+$habitacion = ControladorHabitaciones::ctrMostrarHabitaciones($valor);
 ?>
 <!--=====================================
 INFO HABITACIÓN
@@ -36,10 +16,9 @@ INFO HABITACIÓN
 				CABECERA HABITACIONES
 				======================================-->
 				<div class="pt-4 cabeceraHabitacion">
-					<a href="" class="float-left lead text-white pt-1 px-3">
+					<a href="<?php echo $ruta; ?>" class="float-left lead text-white pt-1 px-3">
 						<h5><i class="fas fa-chevron-left"></i> Regresar</h5>
 					</a>
-					<h2 class="float-right text-white px-3 categoria text-uppercase">Hola</h2>
 					<div class="clearfix"></div>
 				</div>
 
@@ -51,7 +30,12 @@ INFO HABITACIÓN
 					<div class="slide-inner">
 						<ul class="slide-area">
 							<li>
-								<img src="../../img/habitacion01.png" class="img-fluid">
+								<?php
+								$array = explode(",", trim($habitacion["galeria"], "[]"));
+								$img = trim(reset($array), "\"");
+								$img = str_replace("\\", "/", $img);
+								?>
+								<img src="<?php echo $ruta . "admin/" . $img; ?>" class="img-fluid">
 							</li>
 						</ul>
 					</div>
@@ -71,18 +55,14 @@ INFO HABITACIÓN
 				======================================-->
 
 				<div class="descripcionHabitacion px-3">
-					<h1 class="colorTitulos float-left">Habitacion Prueba </h1>
+					<h1 class="colorTitulos float-left">
+						<?php echo $habitacion["estilo"]; ?>
+					</h1>
 					<div class="clearfix mb-4"></div>
 					<div class="d-habitacion">
-					<?php
-					echo $valor;
-					?>
-						<p>Para comprender el origen del café verde, primero se debe comprender que el café comercializado más conocido es de color marrón debido a que es sometido a un proceso de tueste que lo oscurece. En cambio, el café verde no es tratado de tal forma, por lo que conserva su color original.Además del color, cuenta con otras características que lo diferencian por completo del café más tradicional. Por ejemplo, <strong>el olor es más penetrante y su sabor levemente más amargo. </strong>Otro factor diferenciador es la alta presencia de ácido clorogénico respecto al café tostado.</p>
-						<p><a href="https://www.eltiempo.com/vida/tendencias/creatina-para-el-deporte-funciona-745571">Creatina: ¿puede ayudar con nmi ejercicio físico?</a></p>
-						<p><a href="https://www.eltiempo.com/salud/que-pasa-si-tiene-hepatomegalia-745558">¿Qué le pasa a su cuerpo si sufre de hepatomegalia?</a></p>
-						<p><a href="https://www.eltiempo.com/vida/tendencias/como-elegir-y-usar-plantas-medicinales-de-manera-segura-745545">¿Sabe cómo usar plantas medicinales de manera segura?</a></p>
-						<p>Ese compuesto presente en el café verde es muchas veces relacionado con una serie de beneficios. No obstante, la lista de riesgos también merece ser mencionada, pues <strong>no hay investigaciones importantes que acrediten la fiabilidad de este alimento en la salud.</strong>Se considera posiblemente seguro cuando se consume de manera apropiada. Según 'MedlinePlus' -servicio de información en línea provisto por la Biblioteca Nacional de Medicina de los Estados Unidos-, los extractos de café verde tomados en dosis de hasta 1.000 miligramos al día, hasta por 12 semanas, no representan ningún peligro para la salud.</p>
-						<p><br data-cke-filler="true"></p>
+						<p>
+							<?php echo $habitacion["descripcion_h"]; ?>
+						</p>
 					</div>
 				</div>
 

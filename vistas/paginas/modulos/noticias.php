@@ -7,7 +7,31 @@ $habitaciones = ControladorHabitaciones::ctrMostrarHabitaciones($valor);
 <!--=====================================
 HABITACIONES
 ======================================-->
-	<section class="pt-120 pb-150 habitacion-section">
+<div class="contenedor-noticias">
+	
+<?php
+						foreach ($habitaciones as $key => $value): ?>
+    <div class="noticia grande">
+		<a href="<?php echo $ruta . "index.php?pagina=infnoticia&id=" . $value["id_h"]; ?>">
+		<?php
+										$array = explode(",", trim($value["galeria"], "[]"));
+										$img = trim(reset($array), "\"");
+										$img = str_replace("\\", "/", $img);
+										?>
+      <img src="<?php echo $ruta . "admin/" . $img; ?>" alt="notice" width="100%">
+
+	  </a>
+      <h2><a href="<?php echo $ruta . "index.php?pagina=infnoticia&id=" . $value["id_h"]; ?>>">
+													<?php echo $value["estilo"]; ?>
+												</a></h2>
+      <p><?php echo $value["descripcion_h"] = substr($value["descripcion_h"], 0, 400) . " ..."; ?></p>
+      <a class='btn' href="<?php echo $ruta . "index.php?pagina=infnoticia&id=" . $value["id_h"]; ?>">Leer Mas</a>
+    </div>
+	<?php endforeach ?>
+    <!-- Resto de las noticias -->
+  </div>
+
+	<!-- <section class="pt-120 pb-150 habitacion-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
@@ -51,5 +75,5 @@ HABITACIONES
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 </div>

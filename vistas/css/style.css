@@ -830,3 +830,32 @@ padding: 1px;
     padding: 1px;
     align-items: center;
 }
+
+.contenedor-noticias {
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.noticia {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  grid-gap: 10px;
+ 
+}
+
+.grande {
+  grid-row-end: span 2;
+}
+
+@media (max-width: 768px) {
+  .contenedor-noticias {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .grande {
+    grid-row-end: span 1;
+  }
+}
